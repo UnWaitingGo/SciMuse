@@ -1,0 +1,17 @@
+pillow
+numpy
+scikit-learn
+requests    # 用于调用 API。
+omegaconf   # 用于读取 .yaml 配置。
+python-dotenv  # 用于读取 .env 中的 API Key。
+pydantic  # 用于数据验证（schema.py 核心依赖）。
+chromadb  # 向量数据库。
+openai # 用于调用 OpenAI API。
+smolagents # huggingface的智能代理。
+litellm # 用于调用 OpenAI API。
+ddgs # smolagents的备用工具：用于搜索。
+rich
+gradio
+#######modelscope要求##
+wget
+openssl

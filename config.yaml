@@ -1,0 +1,63 @@
+# 模型配置
+models:
+  embedding:
+    model_id: BAAI/bge-m3
+    dimensions: 1024
+    batch_size: 16 
+  vl:
+    model_id: Qwen/Qwen3-VL-8B-Instruct
+    max_tokens: 2048
+  reasoning:
+    model_id: deepseek-ai/DeepSeek-V3.2-Exp
+    temperature: 0.1
+    max_tokens: 4096
+
+# 向量数据库配置
+vector_db:
+  path: ./data/chroma_db
+  collection_name: scientific_papers
+  similarity_metric: cosine
+  embedding_function: openai
+
+# PDF解析配置
+pdf_parser:
+  extract_images: true
+  extract_tables: true
+  extract_formulas: true
+  image_output_dir: ./data/processed/images
+  resolution: 300
+
+# Agent配置
+agents:
+  planner:
+    max_sub_tasks: 5
+    prompt_template: ./agents/templates/planner_prompt.txt
+  retriever:
+    top_k: 5
+    similarity_threshold: 0.7
+  caption:
+    max_description_length: 512
+  reasoner:
+    confidence_threshold: 0.8
+  reviewer:
+    confidence_threshold: 0.8
+    require_citations: true
+
+# 路径配置
+paths:
+  data:
+    pdfs: ./data/pdfs
+    processed: ./data/processed
+  models: ./models
+  tools: ./tools
+  experiments: ./experiments
+
+# API配置
+api:
+  timeout: 300
+  max_retries: 3
+  base_url: ${oc.env:OPENAI_BASE_URL}
+  # api_key: ${oc.env:MODELSCOPE_ACCESS_TOKEN}   #modelscope平台
+  api_key: ${oc.env:SILICONFLOW_API_KEY}    # 硅基流动平台
+  mineru_token: ${oc.env:MINERU_API_TOKEN}
+  mineru_base_url: "https://mineru.net/api/v4"
