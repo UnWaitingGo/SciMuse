@@ -1,3 +1,6 @@
 .env
-__pycache__/
+**/__pycache__/
 templates/
+data/processed/images/
+data/chroma_db/
+.pytest_cache/ # 测试缓存
